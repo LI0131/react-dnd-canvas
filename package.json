@@ -4,6 +4,10 @@
   "version": "1.0.1",
   "description": "package containing moveable components",
   "module": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LI0131/react-dnd-canvas.git"
+  },
   "scripts": {
     "build": "rollup -c ./config/rollup.config.js",
     "test": "jest"
