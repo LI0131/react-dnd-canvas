@@ -1,11 +1,12 @@
-import json from '@rollup/plugin-json';
-import babel from '@rollup/plugin-babel'
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
-import nodeGlobals from 'rollup-plugin-node-globals';
-import includePaths from 'rollup-plugin-includepaths';
-import { createFilter } from 'rollup-pluginutils';
 import { dependencies, peerDependencies } from '../package.json';
+
+import babel from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs';
+import { createFilter } from 'rollup-pluginutils';
+import includePaths from 'rollup-plugin-includepaths';
+import json from '@rollup/plugin-json';
+import nodeGlobals from 'rollup-plugin-node-globals';
+import resolve from '@rollup/plugin-node-resolve';
 
 const external = createFilter(
     Object.keys({...dependencies, ...peerDependencies}).map(item => item),

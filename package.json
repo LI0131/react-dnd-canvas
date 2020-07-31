@@ -3,7 +3,6 @@
   "name": "react-dnd-canvas",
   "version": "1.0.0",
   "description": "package containing moveable components",
-  "main": "index.js",
   "module": "dist/index.js",
   "scripts": {
     "build": "rollup -c ./config/rollup.config.js",
@@ -22,6 +21,7 @@
   "devDependencies": {
     "@babel/preset-react": "7.10.4",
     "@babel/plugin-syntax-jsx": "7.10.4",
+    "@babel/plugin-proposal-optional-chaining": "7.10.4",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-babel": "5.1.0",
     "rollup-plugin-includepaths": "0.2.3",

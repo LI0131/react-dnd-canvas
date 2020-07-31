@@ -1,12 +1,12 @@
 import * as ReduxActions from '../redux/actions';
 
 import React, { useState } from 'react';
-import { useDrop } from 'react-dnd';
+
+import { MoveableComponent } from '../MoveableComponent';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import { itemTypes } from '../types';
-import { MoveableComponent } from '../MoveableComponent';
+import { useDrop } from 'react-dnd';
 import { useRegistry } from '../registry';
 
 const Canvas = ({ height, width, components, movingComponent, updateComponent }) => {
@@ -47,9 +47,9 @@ Canvas.defaultProps = {
 };
 
 export default connect(
-    state => ({
-        components: state.components,
-        movingComponent: state.movingComponent
+    ({ CanvasReducer }) => ({
+        components: CanvasReducer.components,
+        movingComponent: CanvasReducer.movingComponent
     }),
     dispatch => ({
         updateComponent: (id, x, y) => dispatch(ReduxActions.updateComponent(id, x, y))

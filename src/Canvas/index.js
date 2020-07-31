@@ -1,8 +1,7 @@
-import React from 'react';
+import CanvasComponent from './Canvas';
 import { DndProvider } from 'react-dnd';
 import MouseBackEnd from 'react-dnd-mouse-backend';
-
-import CanvasComponent from './Canvas';
+import React from 'react';
 
 export const Canvas = (props) => {
     return <DndProvider backend={ MouseBackEnd }>
