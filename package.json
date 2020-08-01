@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/LI0131/react-dnd-canvas.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup -c ./config/rollup.config.js",
     "test": "jest"

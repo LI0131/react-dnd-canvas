@@ -1,3 +1,6 @@
+[![npm version](https://img.shields.io/npm/v/react-dnd-canvas.svg?style=flat-square)](https://www.npmjs.com/package/react-dnd-canvas)
+[![npm downloads](https://img.shields.io/npm/dm/react-dnd-canvas.svg?style=flat-square)](https://www.npmjs.com/package/react-dnd-canvas)
+
 # react-dnd-canvas #
 
 This repo provides a wrapper for the react-dnd package. By importing the `Canvas` component, one can register components (any node), which can be dragged and dropped within the Canvas.
