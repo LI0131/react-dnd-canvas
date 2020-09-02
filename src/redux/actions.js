@@ -7,6 +7,13 @@ export const addComponent = (x, y, registeryType) => {
     };
 };
 
+export const removeComponent = (id) => {
+    return {
+        type: ActionTypes.REMOVE_COMPONENT,
+        payload: id
+    }
+};
+
 export const updateComponent = (id, x, y) => {
     return {
         type: ActionTypes.UPDATE_COMPONENT,

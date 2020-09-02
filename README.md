@@ -3,7 +3,7 @@
 
 # react-dnd-canvas #
 
-This repo provides a wrapper for the react-dnd package. By importing the `Canvas` component, one can register components (any node), which can be dragged and dropped within the Canvas.
+This repo provides a wrapper for the react-dnd package. By importing the `Canvas` component, one can register any node, so that they may be dragged and dropped within the Canvas.
 
 # Setup #
 
@@ -30,19 +30,24 @@ ReactDOM.render(
 
 ## Registering Components ##
 
-In order to add a component to the `Canvas`, employ the component registry by importing the `register` function.
+In order to add a component to the `Canvas`, employ the component registry by importing the `useRegistry` React Hook.
 
 ```
-const Test = () => <form>
-    <h1>Hello</h1>
-    <p>Enter your name:</p>
-    <input
-        type="text"
-    />
-</form>;
+Import Test from './Test';
 
-register('TEST', Test);
+const App = () => {
+    const [registry, register] = useRegistry();
+
+    useEffect(() => {
+        register(Test, 'TEST');
+    }, []);
+
+    return ...
+
+};
 ```
+
+Once the component is active within the registry the type value you have assigned can be used to access the component in the registry.
 
 ## Adding Components ##
 

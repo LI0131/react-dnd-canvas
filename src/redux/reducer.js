@@ -15,6 +15,11 @@ const reducer = (state=initialState, action) => {
                     ...action.payload
                 }]
             }
+        case ActionTypes.REMOVE_COMPONENT:
+            return {
+                ...state,
+                components: state.components.filter(component => component.id !== action.payload)
+            }
         case ActionTypes.UPDATE_COMPONENT:
             return {
                 ...state,
