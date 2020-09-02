@@ -1,7 +1,7 @@
 {
   "author": "LI0131",
   "name": "react-dnd-canvas",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "package containing moveable components",
   "module": "dist/index.js",
   "repository": {
