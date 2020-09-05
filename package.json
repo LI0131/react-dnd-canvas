@@ -1,19 +1,28 @@
 {
-  "author": "LI0131",
+  "author": "Liam McCann (http://liam-mccann.herokuapp.com)",
   "name": "react-dnd-canvas",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "package containing moveable components",
-  "module": "dist/index.js",
+  "sideEffects": false,
+  "keywords": [
+    "drag",
+    "drop",
+    "draggable",
+    "droppable",
+    "drag-and-drop",
+    "dnd",
+    "canvas",
+    "react-dnd"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/LI0131/react-dnd-canvas.git"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
-    "build": "rollup -c ./config/rollup.config.js",
-    "test": "jest"
+    "build": "rollup -c ./config/rollup.config.js"
   },
   "peerDependencies": {
     "react-redux": "^7.2.0"

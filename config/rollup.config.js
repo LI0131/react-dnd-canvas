@@ -19,7 +19,7 @@ const extensions = [ '.js' ];
 export default {
     input: './src/index.js',
     output: {
-        file: './dist/index.js',
+        file: './index.js',
         format: 'esm',
         name: 'react-dnd-canvas'
     },
@@ -41,6 +41,6 @@ export default {
             paths: ['./src'],
             external: [],
             extensions: ['.js']
-        })
+        }),
     ]
 }
