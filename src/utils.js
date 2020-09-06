@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { addComponent } from './redux'
+import { useDispatch, useSelector } from 'react-redux';
 
 export const useRegistry = () => {
-
     const [registry, setRegistry] = useState({});
 
     const register = (component, key) => {
@@ -24,4 +25,27 @@ export const useDimensions = () => {
     };
 
     return [dimensions, { hasDimensions, addDimensions }];
+};
+
+export const useComponentsFromObject = object => {
+    const [data, setData] = useState(object);
+    const components = useSelector(state => state.CanvasReducer.components);
+    const dispatch = useDispatch();
+
+    const loadData = dispatch => {
+        Object.values(data).map(obj => {
+            const { x, y, type } = obj;
+            try {
+                setTimeout(() => dispatch(addComponent(x, y, type)), 100);
+            } catch (error) {
+                console.error(`Failed to load components: ${error}`)
+            }
+        });
+    };
+
+    useEffect(() => setData(components), [components]);
+
+    useEffect(() => loadData(dispatch), []);
+
+    return Object.assign({}, data);
 };
