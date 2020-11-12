@@ -1,10 +1,10 @@
-import * as ReduxActions from '../redux/actions';
-
 import React, { useEffect, useRef } from 'react';
-import { useDrag } from 'react-dnd';
+
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { itemTypes } from '../types';
+import { setMovingComponent } from '../redux/actions';
+import { useDispatch } from 'react-redux';
+import { useDrag } from 'react-dnd';
 
 const MoveableComponent = ({
     children,
@@ -12,11 +12,11 @@ const MoveableComponent = ({
     x,
     y,
     showDragFootprint,
-    setMovingComponent,
     dragProps,
     moveableStyle,
     addDimensions
 }) => {
+    const dispatch = useDispatch();
     const componentRef = useRef();
     const [{ isDragging }, drag] = useDrag({
         item: { type: itemTypes.MOVEABLE },
@@ -27,7 +27,7 @@ const MoveableComponent = ({
     });
 
     useEffect(() => {
-        isDragging && setMovingComponent(id)
+        isDragging && dispatch(setMovingComponent(id));
     }, [isDragging, setMovingComponent, id]);
 
     useEffect(() => {
@@ -58,7 +58,6 @@ MoveableComponent.propTypes = {
     y: PropTypes.number,
     addDimensions: PropTypes.func,
     showDragFootprint: PropTypes.bool,
-    setMovingComponent: PropTypes.func,
     removeComponent: PropTypes.func,
     dragProps: PropTypes.shape({
         [PropTypes.string]: PropTypes.any
@@ -74,9 +73,4 @@ MoveableComponent.defaultProps = {
     showDragFootprint: true
 };
 
-export default connect(
-    undefined,
-    dispatch => ({
-        setMovingComponent: (id) => dispatch(ReduxActions.setMovingComponent(id))
-    })
-)(MoveableComponent);
+export default MoveableComponent;

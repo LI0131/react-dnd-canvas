@@ -1,11 +1,10 @@
-import * as ReduxActions from '../redux/actions';
-
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { MoveableComponent } from '../MoveableComponent';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { itemTypes } from '../types';
+import { updateComponent } from '../redux/actions';
 import { useDimensions } from '../utils';
 import { useDrop } from 'react-dnd';
 
@@ -14,14 +13,14 @@ const Canvas = ({
     height,
     width,
     registry,
-    components,
-    movingComponent,
-    updateComponent,
     dropProps,
     dragProps,
     moveableStyle,
     showDragFootprint
 }) => {
+    const dispatch = useDispatch();
+    const components = useSelector(state => state.CanvasReducer.components);
+    const movingComponent = useSelector(state => state.CanvasReducer.movingComponent);
     const [canvasRect, setCanvasRect] = useState();
     const [clientPos, setClientPos] = useState();
     const [dimensions, { addDimensions }] = useDimensions();
@@ -37,7 +36,8 @@ const Canvas = ({
             };
             return movingComponent && canvasRect && clientPos ? checkDims(x, y, height, width) : false;
         },
-        drop: () => clientPos && movingComponent && updateComponent(movingComponent, clientPos.x, clientPos.y),
+        drop: () => clientPos && movingComponent && dispatch(
+            updateComponent(movingComponent, clientPos.x, clientPos.y)),
         collect: monitor => ({
             currentOffset: setClientPos(
                 monitor.getSourceClientOffset()
@@ -79,10 +79,7 @@ Canvas.propTypes = {
     height: PropTypes.number,
     width: PropTypes.number,
     registry: PropTypes.object.isRequired,
-    components: PropTypes.array,
     DeletionComponent: PropTypes.node,
-    movingComponent: PropTypes.string,
-    updateComponent: PropTypes.func,
     dropProps: PropTypes.shape({
         [PropTypes.string]: PropTypes.any
     }),
@@ -97,12 +94,4 @@ Canvas.defaultProps = {
     width: 400
 };
 
-export default connect(
-    ({ CanvasReducer }) => ({
-        components: CanvasReducer.components,
-        movingComponent: CanvasReducer.movingComponent
-    }),
-    dispatch => ({
-        updateComponent: (id, x, y) => dispatch(ReduxActions.updateComponent(id, x, y))
-    })
-)(Canvas);
+export default Canvas;
