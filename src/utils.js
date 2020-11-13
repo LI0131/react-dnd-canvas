@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 export const useRegistry = () => {
     const [registry, setRegistry] = useState({});
 
-    const register = (component, key) => {
-        setRegistry({...registry, [key]: component})
+    const register = (key, component, props = {}) => {
+        setRegistry({...registry, [key]: { component, props }})
     };
 
     return [registry, register];

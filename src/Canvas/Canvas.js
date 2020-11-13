@@ -53,9 +53,10 @@ const Canvas = ({
     return <div ref={ canvasRef } style={{ width, height, ...style }}>
         <div ref={ drop } style={{ height: 'inherit', width: 'inherit' }}>
             {components.map(({ id, x, y, type }) => {
-                const Component = registry?.[type];
+                const { component: Component, props } = registry?.[type];
                 return <React.Fragment>
                     {Component && <MoveableComponent
+                        key={ id }
                         id={ id }
                         x={ x }
                         y={ y }
@@ -64,7 +65,7 @@ const Canvas = ({
                         showDragFootprint={ showDragFootprint }
                         addDimensions={ addDimensions }
                     >
-                        <Component/>
+                        <Component {...props}/>
                     </MoveableComponent>}
                 </React.Fragment>
             })}

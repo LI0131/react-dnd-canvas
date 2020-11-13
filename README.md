@@ -37,17 +37,23 @@ Import Test from './Test';
 
 const App = () => {
     const [registry, register] = useRegistry();
-
-    useEffect(() => {
-        register(Test, 'TEST');
-    }, []);
+    !registry?.['TEST'] && register(Test, 'TEST');
 
     return ...
-
 };
 ```
 
-Once the component is active within the registry the type value you have assigned can be used to access the component in the registry.
+Once the component is active within the registry the type value you have assigned can be used to access the component in the registry. The register function
+can also be used to pass props, which will be applied to the component at render time. However, passing props is not required.
+
+```
+const App = () => {
+    const [registry, register] = useRegistry();
+    !registry?.['BLUESQUARE'] && register('BLUESQUARE', Square, { color: 'blue' })
+
+    return ...
+};
+```
 
 ## Adding Components ##
 
