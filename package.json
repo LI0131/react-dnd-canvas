@@ -1,7 +1,7 @@
 {
   "author": "Liam McCann (http://liam-mccann.herokuapp.com)",
   "name": "react-dnd-canvas",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "package containing moveable components",
   "sideEffects": false,
   "keywords": [
